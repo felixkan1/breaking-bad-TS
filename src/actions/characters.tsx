@@ -6,21 +6,8 @@ import {
 } from './types';
 import { getAllCharacters } from '../utils/api';
 import { Dispatch } from 'react';
-
-interface Character {
-  char_id: number;
-  name: string;
-  birthday: string;
-  occupation: string[];
-  img: string;
-  status: string;
-  nickname: string;
-  apperance: number[];
-  portrayed: string;
-  category: string;
-  better_call_saul_apperance: string[];
-  tags: string[];
-}
+import { Character } from '../interface/interfaces';
+import { ExecException } from 'child_process';
 
 interface GetCharacters {
   type: string;

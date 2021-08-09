@@ -1,21 +1,28 @@
 import React, { useRef } from 'react';
-import { Tooltip } from './Tooltip';
+import { Tooltip } from './Tooltip/Tooltip';
 import { connect } from 'react-redux';
+import { Dispatch } from 'react';
 import { addTag, removeTag } from '../actions/characters';
+import { Character } from '../interface/interfaces';
 
-interface Character {
-  char_id: number;
-  name: string;
-  birthday: string;
-  occupation: string[];
-  img: string;
-  status: string;
-  nickname: string;
-  apperance: number[];
-  portrayed: string;
-  category: string;
-  better_call_saul_apperance: string[];
-  tags: string[];
+interface AddTagPayload {
+  characterIndex: number;
+  tag: string;
+}
+
+interface AddTag {
+  type: string;
+  payload: AddTagPayload;
+}
+
+interface removeTagPayload {
+  characterIndex: number;
+  tagToRemove: string;
+}
+
+interface RemoveTag {
+  type: string;
+  payload: removeTagPayload;
 }
 
 interface Props {
@@ -52,7 +59,9 @@ const CharacterItem: React.FC<Props> = ({ character, addTag, removeTag }) => {
   const handleRemoveTag = (e: React.MouseEvent<HTMLDivElement>) => {
     const characterIndex = char_id - 1;
     const tagToremove = e.currentTarget.textContent;
-    removeTag(characterIndex, tagToremove);
+    if (tagToremove) {
+      removeTag(characterIndex, tagToremove);
+    }
   };
   return (
     <div className="character-item">
@@ -75,14 +84,14 @@ const CharacterItem: React.FC<Props> = ({ character, addTag, removeTag }) => {
           </div>
 
           <div className="tags">
-            {/* {tags.length > 0 &&
+            {tags.length > 0 &&
               tags.map((tag: string, index: number) => (
                 <Tooltip text="Remove Tag" key={index}>
                   <div className="tag" onClick={handleRemoveTag}>
                     {tag}
                   </div>
                 </Tooltip>
-              ))} */}
+              ))}
           </div>
           <input
             ref={tagInput}
