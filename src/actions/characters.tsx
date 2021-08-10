@@ -8,38 +8,42 @@ import { getAllCharacters } from '../utils/api';
 import { Dispatch } from 'react';
 import { Character } from '../interface/interfaces';
 
-interface GetCharacters {
+type GetCharactersAction = {
   type: string;
   payload: Character[];
-}
+};
 
-interface GetCharactersError {
+type GetCharactersErrorAction = {
   type: string;
   payload: any;
-}
+};
 
-interface AddTagPayload {
+type AddTagPayload = {
   characterIndex: number;
   tag: string;
-}
+};
 
-interface AddTag {
+type AddTagAction = {
   type: string;
   payload: AddTagPayload;
-}
+};
 
-interface removeTagPayload {
+type removeTagPayload = {
   characterIndex: number;
   tagToRemove: string;
-}
+};
 
-interface RemoveTag {
+type RemoveTagAction = {
   type: string;
   payload: removeTagPayload;
-}
+};
+
+type CharacterActions = GetCharactersAction | GetCharactersErrorAction;
+
+type TagActions = AddTagAction | RemoveTagAction;
 
 export const getCharactersProfile = () => async (
-  dispatch: Dispatch<GetCharacters | GetCharactersError>
+  dispatch: Dispatch<CharacterActions>
 ) => {
   try {
     const res = await getAllCharacters();
@@ -60,7 +64,7 @@ export const getCharactersProfile = () => async (
 };
 
 export const addTag = (characterIndex: number, tag: string) => (
-  dispatch: Dispatch<AddTag>
+  dispatch: Dispatch<TagActions>
 ) => {
   dispatch({
     type: ADD_TAG,
@@ -69,7 +73,7 @@ export const addTag = (characterIndex: number, tag: string) => (
 };
 
 export const removeTag = (characterIndex: number, tagToRemove: string) => (
-  dispatch: Dispatch<RemoveTag>
+  dispatch: Dispatch<TagActions>
 ) => {
   dispatch({
     type: REMOVE_TAG,

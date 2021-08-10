@@ -6,10 +6,17 @@ import {
 } from '../actions/types';
 import { Character } from '../interface/interfaces';
 
-
 const initialState: Character[] = [];
 
-export default function characters(state = initialState, action: any) {
+interface Action {
+  type: string;
+  payload: any;
+}
+
+export default function characters(
+  state: Character[] = initialState,
+  action: Action
+) {
   const { type, payload } = action;
   switch (type) {
     case GET_CHARACTERS:

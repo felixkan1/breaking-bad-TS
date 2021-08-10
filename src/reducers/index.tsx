@@ -1,4 +1,9 @@
 import { combineReducers } from 'redux';
 import characters from './characters';
+import { Character } from '../interface/interfaces';
 
-export default combineReducers({ characters });
+type AppState = {
+  characters: Character[];
+};
+
+export default combineReducers<AppState>({ characters });
