@@ -1,29 +1,8 @@
 import React, { useRef } from 'react';
 import { Tooltip } from './Tooltip/Tooltip';
 import { connect } from 'react-redux';
-import { Dispatch } from 'react';
 import { addTag, removeTag } from '../actions/characters';
 import { Character } from '../interface/interfaces';
-
-interface AddTagPayload {
-  characterIndex: number;
-  tag: string;
-}
-
-interface AddTag {
-  type: string;
-  payload: AddTagPayload;
-}
-
-interface removeTagPayload {
-  characterIndex: number;
-  tagToRemove: string;
-}
-
-interface RemoveTag {
-  type: string;
-  payload: removeTagPayload;
-}
 
 interface Props {
   character: Character;

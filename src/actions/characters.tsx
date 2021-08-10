@@ -7,7 +7,6 @@ import {
 import { getAllCharacters } from '../utils/api';
 import { Dispatch } from 'react';
 import { Character } from '../interface/interfaces';
-import { ExecException } from 'child_process';
 
 interface GetCharacters {
   type: string;
