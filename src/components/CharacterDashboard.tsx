@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCharactersProfile } from '../actions/characters';
-//import { Scrollbars } from 'react-custom-scrollbars';
 import CharacterItem from './CharacterItem';
 import { Character } from '../interface/interfaces';
+import Scrollbars from 'react-custom-scrollbars';
 
 interface CharactersState {
   characters: Character[];
@@ -15,13 +15,13 @@ interface Props {
   characters: Character[];
 }
 
-// const scrollBarThumb = () => {
-//   const thumbStyle = {
-//     backgroundColor: 'rgb(119,119,119)',
-//     borderRadius: '10px',
-//   };
-//   return <div style={{ ...thumbStyle }} />;
-// };
+const scrollBarThumb = () => {
+  const thumbStyle = {
+    backgroundColor: 'rgb(119,119,119)',
+    borderRadius: '10px',
+  };
+  return <div style={{ ...thumbStyle }} />;
+};
 
 const CharacterDashboard: React.FC<Props> = ({
   getCharactersProfile,
@@ -73,24 +73,24 @@ const CharacterDashboard: React.FC<Props> = ({
         />
       </div>
 
-      {/* <Scrollbars
+      <Scrollbars
         autoHide
         autoHideTimeout={500}
         autoHideDuration={200}
         renderThumbVertical={scrollBarThumb}
-      > */}
-      <div className="characters">
-        {characters.length !== 0 &&
-          characters
-            .filter(
-              (character: Character) =>
-                filterByName(character.name) && filterByTags(character.tags)
-            )
-            .map((character: Character, index: number) => (
-              <CharacterItem character={character} key={index} />
-            ))}
-      </div>
-      {/* </Scrollbars> */}
+      >
+        <div className="characters">
+          {characters.length !== 0 &&
+            characters
+              .filter(
+                (character: Character) =>
+                  filterByName(character.name) && filterByTags(character.tags)
+              )
+              .map((character: Character, index: number) => (
+                <CharacterItem character={character} key={index} />
+              ))}
+        </div>
+      </Scrollbars>
     </div>
   );
 };
